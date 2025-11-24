@@ -1,0 +1,44 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  quality-and-tests:
+    name: Qualidade e Testes
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+    
+    steps:
+    # 1. Baixar código
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    # 2. Configurar Node.js
+    - name: Setup Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    
+    # 3. Instalar dependências
+    - name: Install dependencies
+      run: npm ci
+    
+    # 4. Verificar se há erros de lint
+    - name: Run ESLint
+      run: npm run lint
+    
+    # 5. Executar testes
+    - name: Run tests
+      run: npm test
+    
+    # 6. Build do projeto
+    - name: Build project
+      run: npm run build

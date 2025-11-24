@@ -1,0 +1,25 @@
+{
+  "name": "ci-cd",
+  "version": "1.0.0",
+  "description": "Projeto de exemplo CI/CD",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "node --watch src/app.js",
+    "test": "jest",
+    "lint": "eslint src/ tests/",
+    "build": "echo 'Build completo!'"
+  },
+  "keywords": ["ci-cd", "express", "jest"],
+  "author": "Seu Nome",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^9.39.1",
+    "jest": "^30.2.0",
+    "supertest": "^7.0.0"
+  }
+}
